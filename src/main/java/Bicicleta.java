@@ -1,10 +1,13 @@
-public class Bicicleta extends Vehiculo{
+public class Bicicleta{
 
 	private float velocidad;
+	String nombre;
 
 	public Bicicleta() {
-		super();
 		this.velocidad = 20.0f;
+		this.nombre = "Bicicleta";
 	}
-
+	public float tiempoEnLlegar(float distancia){
+		return distancia / this.velocidad;
+	}
 }

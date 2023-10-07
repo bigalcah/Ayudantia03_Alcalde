@@ -1,10 +1,13 @@
-public class Auto extends Vehiculo{
+public class Auto{
 
 	public float velocidad;
+	String nombre;
 
 	public Auto() {
-		super();
 		this.velocidad = 60.0f;
+		this.nombre = "auto";
 	}
-
+	public float tiempoEnLlegar(float distancia){
+		return distancia / this.velocidad;
+	}
 }

@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class Persona {
 
 	private String nombre;
-	Vehiculo vehiculo = elegirVehiculo();
 
 	public static Scanner scanner = new Scanner(System.in);
 	public void setNombre(String nombre){
@@ -24,35 +23,48 @@ public class Persona {
 		}
 		return distancia;
 	}
-	public void mensaje(){
+	public void introducirNombrePersona(){
 		System.out.println("Introduzca su nombre: ");
 		String nombrePersona = scanner.next();
-		setNombre(nombre);
-		System.out.println("Introduzca el nombre de su destino: ");
-		String nombreDestino = scanner.next();
-		int distanciaDestino = validarInt();
-
-		System.out.println("Hola " + this.nombre + "!, el tiempo de viaje aproximado para llegar a " + nombreDestino +
-				"es de: " + viajar(distanciaDestino, vehiculo));
+		setNombre(nombrePersona);
 	}
-	public float viajar(int distancia, Vehiculo vehiculo) {
-		if (vehiculo instanceof Auto) {
-			Auto auto = (Auto) vehiculo;
-			return auto.tiempoEnLlegar(distancia);
-		} else if (vehiculo instanceof Motocicleta) {
-			Motocicleta moto = (Motocicleta) vehiculo;
-			return moto.tiempoEnLlegar(distancia);
-		} else if (vehiculo instanceof Bicicleta) {
-			Bicicleta bicicleta = (Bicicleta) vehiculo;
-			return bicicleta.tiempoEnLlegar(distancia);
-		} else {
-			// Manejar el caso donde vehiculo no es de ninguno de los tipos esperados
-			return 0.0f;
+	public String introducirNombreDestino(){
+		System.out.println("Introduzca el nombre de su destino: ");
+		String nombreDestino;
+		return nombreDestino = scanner.next();
+	}
+	public void viajar() {
+		if(elegirVehiculo() == 1){
+			Auto auto = new Auto();
+			introducirNombrePersona();
+			String nombreDestino = introducirNombreDestino();
+			int distanciaDestino = validarInt();
+			float tiempoEnLlegar = auto.tiempoEnLlegar(distanciaDestino);
+			System.out.println("Hola " + this.nombre + " el tiempo en llegar a " + nombreDestino + " en " +
+					auto.nombre + " es de " + tiempoEnLlegar + " minutos");
+		}else if(elegirVehiculo() == 2){
+			Motocicleta moto = new Motocicleta();
+			introducirNombrePersona();
+			String nombreDestino = introducirNombreDestino();
+			int distanciaDestino = validarInt();
+			float tiempoEnLlegar = moto.tiempoEnLlegar(distanciaDestino);
+			System.out.println("Hola " + this.nombre + " el tiempo en llegar a " + nombreDestino + " en " +
+					moto.nombre + " es de " + tiempoEnLlegar + " minutos");
+		}else if(elegirVehiculo() == 3){
+			Bicicleta bici = new Bicicleta();
+			introducirNombrePersona();
+			String nombreDestino = introducirNombreDestino();
+			int distanciaDestino = validarInt();
+			float tiempoEnLlegar = bici.tiempoEnLlegar(distanciaDestino);
+			System.out.println("Hola " + this.nombre + " el tiempo en llegar a " + nombreDestino + " en " +
+					bici.nombre + " es de " + tiempoEnLlegar + " minutos");
+		}else {
+			System.out.println("Algo salió mal");
 		}
 	}
-	public Vehiculo elegirVehiculo(){
+	public int elegirVehiculo(){
 		int opcion;
-		Vehiculo seleccion = null;
+		int seleccion = 0;
 		do {
 			System.out.println("Qué vehiculo desea conducir? Escoja una opción: ");
 			System.out.println("[1] Auto");
@@ -61,23 +73,17 @@ public class Persona {
 			opcion = scanner.nextInt();
 			switch (opcion){
 				case 1 -> {
-					Auto auto = new Auto();
-					 seleccion = auto;
-					 break;
+					seleccion = 1;
 				}
 				case 2 -> {
-					Motocicleta moto = new Motocicleta();
-					seleccion = moto;
-					break;
+					seleccion = 2;
 				}
 				case 3 -> {
-					Bicicleta bicicleta = new Bicicleta();
-					seleccion = bicicleta;
-					break;
+					seleccion = 3;
 				}
 				default -> System.out.println("Intente con una opción valida: ");
 			}
-		}while (seleccion == null);
+		}while (seleccion < 1 && seleccion > 3);
 		return seleccion;
 	}
 }
