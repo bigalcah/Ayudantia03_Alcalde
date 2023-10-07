@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PersonaTest {
     Persona personaPrueba;
+    int distancia;
     @BeforeEach
     void setUp() {
         personaPrueba = new Persona();
+        distancia = 200;
     }
 
     @AfterEach
@@ -16,5 +18,6 @@ class PersonaTest {
 
     @Test
     void validarDistancia() {
+        assertEquals(personaPrueba.validarDistancia(),distancia);
     }
 }
