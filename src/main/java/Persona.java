@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Persona {
 
 	private String nombre;
+	Vehiculo vehiculo = elegirVehiculo();
 
 	public static Scanner scanner = new Scanner(System.in);
 	public void setNombre(String nombre){
@@ -32,12 +33,22 @@ public class Persona {
 		int distanciaDestino = validarInt();
 
 		System.out.println("Hola " + this.nombre + "!, el tiempo de viaje aproximado para llegar a " + nombreDestino +
-				"es de: " + viajar(distanciaDestino));
+				"es de: " + viajar(distanciaDestino, vehiculo));
 	}
-	public float viajar(int distancia) {
-		Vehiculo vehiculo = elegirVehiculo();
-		float tiempo = vehiculo.tiempoEnLlegar(distancia);
-		return tiempo;
+	public float viajar(int distancia, Vehiculo vehiculo) {
+		if (vehiculo instanceof Auto) {
+			Auto auto = (Auto) vehiculo;
+			return auto.tiempoEnLlegar(distancia);
+		} else if (vehiculo instanceof Motocicleta) {
+			Motocicleta moto = (Motocicleta) vehiculo;
+			return moto.tiempoEnLlegar(distancia);
+		} else if (vehiculo instanceof Bicicleta) {
+			Bicicleta bicicleta = (Bicicleta) vehiculo;
+			return bicicleta.tiempoEnLlegar(distancia);
+		} else {
+			// Manejar el caso donde vehiculo no es de ninguno de los tipos esperados
+			return 0.0f;
+		}
 	}
 	public Vehiculo elegirVehiculo(){
 		int opcion;
@@ -69,5 +80,4 @@ public class Persona {
 		}while (seleccion == null);
 		return seleccion;
 	}
-
 }
