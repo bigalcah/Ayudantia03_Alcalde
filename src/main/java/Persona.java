@@ -8,7 +8,7 @@ public class Persona {
 	public void setNombre(String nombre){
 		this.nombre = nombre;
 	}
-	public float validarInt(){
+	public float validarDistancia(){
 		int distancia = 0;
 		while (true) {
 			try {
@@ -31,13 +31,14 @@ public class Persona {
 		System.out.println("Introduzca el nombre de su destino: ");
 		return scanner.next();
 	}
+
 	public void viajar() {
 		int eleccion = elegirVehiculo();
 		if(eleccion == 1){
 			Auto auto = new Auto();
 			introducirNombrePersona();
 			String nombreDestino = introducirNombreDestino();
-			float distanciaDestino = validarInt();
+			float distanciaDestino = validarDistancia();
 			float tiempoEnLlegar = auto.tiempoEnLlegar(distanciaDestino);
 			System.out.println("Hola " + this.nombre + "! el tiempo en llegar a " + nombreDestino + " en " +
 					auto.nombre + " es de " + tiempoEnLlegar + " horas");
@@ -45,7 +46,7 @@ public class Persona {
 			Motocicleta moto = new Motocicleta();
 			introducirNombrePersona();
 			String nombreDestino = introducirNombreDestino();
-			float distanciaDestino = validarInt();
+			float distanciaDestino = validarDistancia();
 			float tiempoEnLlegar = moto.tiempoEnLlegar(distanciaDestino);
 			System.out.println("Hola " + this.nombre + "! el tiempo en llegar a " + nombreDestino + " en " +
 					moto.nombre + " es de " + tiempoEnLlegar + " horas");
@@ -53,7 +54,7 @@ public class Persona {
 			Bicicleta bici = new Bicicleta();
 			introducirNombrePersona();
 			String nombreDestino = introducirNombreDestino();
-			float distanciaDestino = validarInt();
+			float distanciaDestino = validarDistancia();
 			float tiempoEnLlegar = bici.tiempoEnLlegar(distanciaDestino);
 			System.out.println("Hola " + this.nombre + "! el tiempo en llegar a " + nombreDestino + " en " +
 					bici.nombre + " es de " + tiempoEnLlegar + " horas");
