@@ -1,0 +1,106 @@
+Index: src/test/java/PersonaTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/PersonaTest.java b/src/test/java/PersonaTest.java
+new file mode 100644
+--- /dev/null	(date 1696720985745)
++++ b/src/test/java/PersonaTest.java	(date 1696720985745)
+@@ -0,0 +1,21 @@
++import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.api.Test;
++import static org.junit.jupiter.api.Assertions.*;
++
++class PersonaTest {
++    Persona personaPrueba;
++    @BeforeEach
++    void setUp() {
++        personaPrueba = new Persona();
++    }
++
++    @AfterEach
++    void tearDown() {
++    }
++
++    @Test
++    void validarDistancia() {
++        assert
++    }
++}
+\ No newline at end of file
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n    <modelVersion>4.0.0</modelVersion>\n\n    <groupId>org.example</groupId>\n    <artifactId>Ayudantia03_Alcalde</artifactId>\n    <version>1.0-SNAPSHOT</version>\n\n    <properties>\n        <maven.compiler.source>21</maven.compiler.source>\n        <maven.compiler.target>21</maven.compiler.target>\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\n    </properties>\n\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision 124d16f36c46ff2d65a8d7487057329fab9bc1b2)
++++ b/pom.xml	(date 1696706089299)
+@@ -13,5 +13,25 @@
+         <maven.compiler.target>21</maven.compiler.target>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     </properties>
++    <dependencies>
++        <dependency>
++            <groupId>org.junit</groupId>
++            <artifactId>junit-bom</artifactId>
++            <version>5.7.1</version>
++        </dependency>
++        <dependency>
++            <groupId>org.junit.jupiter</groupId>
++            <artifactId>junit-jupiter</artifactId>
++            <version>RELEASE</version>
++            <scope>test</scope>
++        </dependency>
++        <dependency>
++            <groupId>org.junit.jupiter</groupId>
++            <artifactId>junit-jupiter-api</artifactId>
++            <version>5.10.0</version>
++            <scope>test</scope>
++        </dependency>
++    </dependencies>
++
+ 
+ </project>
+\ No newline at end of file
+Index: src/test/java/AutoTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/AutoTest.java b/src/test/java/AutoTest.java
+new file mode 100644
+--- /dev/null	(date 1696720985769)
++++ b/src/test/java/AutoTest.java	(date 1696720985769)
+@@ -0,0 +1,26 @@
++import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.api.Test;
++import static org.junit.jupiter.api.Assertions.*;
++
++class AutoTest {
++    Auto autoPrueba;
++    float distancia;
++    float tiempoEsperado;
++
++    @BeforeEach
++    void setUp() {
++        autoPrueba = new Auto();
++        distancia = 200f;
++        tiempoEsperado = 200f / autoPrueba.velocidad;
++    }
++
++    @AfterEach
++    void tearDown() {
++    }
++
++    @Test
++    void tiempoEnLlegar() {
++        assertEquals(autoPrueba.tiempoEnLlegar(200), tiempoEsperado);
++    }
++}
+\ No newline at end of file
